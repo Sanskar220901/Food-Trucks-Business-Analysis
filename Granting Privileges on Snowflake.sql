@@ -1,14 +1,3 @@
-/*----------------------------------------------------------------------------------
-Quickstart Section 3 - Investigating Zero Sales Days in our First Party Data
-
-  Our Tasty Bytes Financial Analysts have brought it to our attention when running 
-  year over year analysis that there are unexplainable days in various cities where
-  our truck sales went to 0. 
-  
-  One example they have provided was for Hamburg, Germany in February of 2022.
-  Author:Chandra
-----------------------------------------------------------------------------------*/
-
 -- Section 3: Step 1 - Querying Point of Sales Data for Trends
 USE ROLE tasty_data_engineer;
 USE WAREHOUSE tasty_de_wh;
@@ -24,29 +13,7 @@ WHERE 1=1
 GROUP BY o.date
 ORDER BY o.date ASC;
 
-/*----------------------------------------------------------------------------------
-Quickstart Section 4 - Investigating Zero Sales Days in our First Party Data
- From what we saw above, it looks like we are missing sales for February 16th 
- through February 21st for Hamburg. Within our first party data there is not 
- much else we can use to investigate this but something larger must have been 
- at play here. 
- 
- One idea we can immediately explore by leveraging the Snowflake Marketplace is
- extreme weather and a free, public listing provided by Weather Source.
-----------------------------------------------------------------------------------*/
-
 -- Section 4: Step 1 - Acquiring the Weather Source LLC: frostbyte Snowflake Marketplace Listing
-
-/*--- 
-    1. Click -> Home Icon
-    2. Click -> Marketplace
-    3. Search -> frostbyte
-    4. Click -> Weather Source LLC: frostbyte
-    5. Click -> Get
-    6. Rename Database -> FROSTBYTE_WEATHERSOURCE (all capital letters)
-    7. Grant to Additional Roles -> PUBLIC
----*/
-
 
 -- Section 4: Step 2 - Harmonizing First and Third Party Data
 CREATE OR REPLACE VIEW frostbyte_tasty_bytes.harmonized.daily_weather_v
@@ -95,17 +62,6 @@ WHERE 1=1
     AND MONTH(date_valid_std) = '2'
 GROUP BY dw.country_desc, dw.city_name, dw.date_valid_std
 ORDER BY dw.date_valid_std DESC;
-
-
-/*----------------------------------------------------------------------------------
- Quickstart Section 5 - Democratizing Data Insights
- 
-  We have now determined that Hurricane level winds were probably at play for the
-  days with zero sales that our financial analysts brought to our attention.
-
-  Let's now make these sort of research available to anyone in our organization
-  by deploying an Analytics view that all Tasty Bytes employees can access.
-----------------------------------------------------------------------------------*/
 
 -- Section 5: Step 1 - Creating SQL Functions
     --> create the SQL function that translates Fahrenheit to Celsius
@@ -169,15 +125,6 @@ LEFT JOIN frostbyte_tasty_bytes.harmonized.orders_v odv
     AND fd.city_name = odv.primary_city
     AND fd.country_desc = odv.country
 GROUP BY fd.date_valid_std, fd.city_name, fd.country_desc;
-
-
-
-/*----------------------------------------------------------------------------------
- Quickstart Section 6 - Deriving Insights from Sales and Marketplace Weather Data
- 
- With Sales and Weather Data available for all Cities our Food Trucks operate in,
- let's now take a look at the value we have now provided to our Financial Analysts.
-----------------------------------------------------------------------------------*/
 
 -- Section 6: Step 1 - Simplifying our Analysis
 SELECT 
