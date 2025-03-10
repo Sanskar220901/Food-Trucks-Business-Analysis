@@ -57,7 +57,7 @@ WHERE 1=1
 /*----------------------------------------------------------------------------------
 Quickstart Section 4 - Harmonizing and Promoting First and Third Party Data
 
- To make our Geospatial analysis seamless, let's make sure to get Safegraph POI
+ To make our Geospatial analysis seamless, get Safegraph POI
  data included in the analytics.orders_v so all of our downstream users can
  also access it.
 ----------------------------------------------------------------------------------*/
