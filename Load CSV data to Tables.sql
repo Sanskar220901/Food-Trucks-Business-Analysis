@@ -7,12 +7,6 @@ Quickstart Section 3 - Acquiring Safegraph POI Data from the Snowflake Marketpla
  more about how these locations relate to each other as well as if there are any
  locations we currently serve that are potentially too far away from top selling
  city centers.
-
- Unfortunately what we have seen so far is our first party data does not give us
- the building blocks required to complete this sort of Geospatial analysis.
- 
- Thankfully, the Snowflake Marketplace has great listings from Safegraph that 
- can assist us here.
 ----------------------------------------------------------------------------------*/
 
 -- Section 3: Step 1 - Using First Party Data to Find Top Selling Locations
